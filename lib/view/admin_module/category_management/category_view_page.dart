@@ -16,7 +16,7 @@ class CategoryPage extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const Text(
           'Category',
-          style: TextStyle(fontSize: 15, color: Colors.black),
+          style: TextStyle(fontSize: 20, color: Colors.black),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

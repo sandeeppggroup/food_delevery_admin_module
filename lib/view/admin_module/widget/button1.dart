@@ -2,11 +2,11 @@ import 'package:admin_module/core/colors.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class ButtonSmall extends StatelessWidget {
+class ButtonBig extends StatelessWidget {
   String label;
   final VoidCallback? onPressed;
 
-  ButtonSmall({required this.label, required this.onPressed, super.key});
+  ButtonBig({required this.label, required this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {

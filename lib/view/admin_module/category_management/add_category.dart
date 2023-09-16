@@ -57,13 +57,26 @@ class CategoryAddPage extends StatelessWidget {
                     color: Colors.grey),
               ),
               SizedBox(
-                height: height * 0.06,
+                height: height * 0.08,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: width * 0.08,
+                  ),
+                  Text('Add category',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                ],
+              ),
+              SizedBox(
+                height: height * 0.007,
               ),
               TextForm1(label: 'Enter category name'),
               SizedBox(
-                height: height * 0.3,
+                height: height * 0.28,
               ),
-              ButtonSmall(
+              ButtonBig(
                 label: 'Save',
                 onPressed: () {
                   Navigator.pop(context);

@@ -1,5 +1,6 @@
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/widget/button1.dart';
+import 'package:admin_module/view/admin_module/widget/button2.dart';
+import 'package:admin_module/view/admin_module/widget/show_dialog.dart';
 import 'package:admin_module/view/admin_module/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 
@@ -80,15 +81,81 @@ class CategoryEditPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.3,
               ),
-              ButtonSmall(
-                label: 'Save',
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonSmall(
+                    label: 'Delete',
+                    onPressed: () {
+                      showDeleteConfirmationDialog(context);
+                    },
+                  ),
+                  ButtonSmall(
+                    label: 'Update',
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Future<void> showDeleteConfirmationDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Are you sure?'),
+          content: const Text('Do you really want to delete this item?'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () {
+                Navigator.popAndPushNamed(context, '/category_page');
+                showItemDeletedSnackBar(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showItemDeletedSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        behavior:
+            SnackBarBehavior.floating, // Makes the snackbar float above the UI
+        backgroundColor: Colors.red, // Background color
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15), // Rounded corners
+        ),
+        content: const Row(
+          children: [
+            Icon(
+              Icons.check_circle,
+              color: Colors.white,
+            ),
+            SizedBox(width: 10),
+            Text(
+              'Item deleted successfully',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        duration: const Duration(seconds: 2),
       ),
     );
   }

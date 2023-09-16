@@ -35,7 +35,9 @@ class AdiminHomePage extends StatelessWidget {
               item1: 'Product',
               item2: 'Management',
               radius: 30,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/product_page');
+              },
             ),
             GridItemWidget(
               item1: 'Order',
