@@ -1,6 +1,4 @@
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/category_management/add_category.dart';
-
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
@@ -10,7 +8,7 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: adminAppBar,
@@ -24,39 +22,43 @@ class CategoryPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Stack(
         children: [
-          SizedBox(
-            height: 672.5,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              // implement GridView.builder
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 3 / 4,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20),
-                itemCount: 10,
-                itemBuilder: (BuildContext ctx, index) {
-                  return Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        gradient: categoryAndProduct,
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/burger_opened.png',
-                            height: height * 0.22, width: height * 0.22),
-                        const Text(
-                          'Pizza',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+          GestureDetector(
+            onDoubleTap: () {
+              Navigator.pushNamed(context, '/category_edit_page');
+            },
+            child: SizedBox(
+              height: 672.5,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 3 / 4,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20),
+                  itemCount: 10,
+                  itemBuilder: (BuildContext ctx, index) {
+                    return Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          gradient: categoryAndProduct,
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/burger_opened.png',
+                              height: height * 0.22, width: height * 0.22),
+                          const Text(
+                            'Pizza',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ),
