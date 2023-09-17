@@ -13,8 +13,12 @@ class CategoryEditPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        backgroundColor: adminAppBar,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed('/category_page');
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: const Text(
           'Edit Category',
           style: TextStyle(color: Colors.black),
@@ -87,13 +91,30 @@ class CategoryEditPage extends StatelessWidget {
                   ButtonSmall(
                     label: 'Delete',
                     onPressed: () {
-                      showDeleteConfirmationDialog(context);
+                      showDeleteConfirmationDialog(
+                        context,
+                        onPressedFunction: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed('/category_page');
+                          showItemSnackBar(context,
+                              massage: 'Category deleted successfully  !',
+                              color: Colors.red);
+                        },
+                        massage:
+                            '''Deleting this category will result in the permanent removal of all products within it !.
+                            \n\nAre you sure you want to proceed with deleting this category?''',
+                      );
+                      // Navigator.pop(context);
                     },
                   ),
                   ButtonSmall(
                     label: 'Update',
                     onPressed: () {
-                      Navigator.pop(context);
+                      showItemSnackBar(context,
+                          massage: 'Category Updated Successfully  !',
+                          color: Colors.blue);
+                      Navigator.of(context)
+                          .pushReplacementNamed('/category_page');
                     },
                   ),
                 ],
@@ -101,61 +122,6 @@ class CategoryEditPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Future<void> showDeleteConfirmationDialog(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Are you sure?'),
-          content: const Text('Do you really want to delete this item?'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('No'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Yes'),
-              onPressed: () {
-                Navigator.popAndPushNamed(context, '/category_page');
-                showItemDeletedSnackBar(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void showItemDeletedSnackBar(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        behavior:
-            SnackBarBehavior.floating, // Makes the snackbar float above the UI
-        backgroundColor: Colors.red, // Background color
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15), // Rounded corners
-        ),
-        content: const Row(
-          children: [
-            Icon(
-              Icons.check_circle,
-              color: Colors.white,
-            ),
-            SizedBox(width: 10),
-            Text(
-              'Item deleted successfully',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        duration: const Duration(seconds: 2),
       ),
     );
   }

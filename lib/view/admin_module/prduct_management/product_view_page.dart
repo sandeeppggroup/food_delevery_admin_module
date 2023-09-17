@@ -13,7 +13,8 @@ class ProductPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: adminAppBar,
         elevation: 0,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
+        foregroundColor: Colors.black,
         title: const Text(
           'Products',
           style: TextStyle(fontSize: 20, color: Colors.black),
@@ -24,7 +25,7 @@ class ProductPage extends StatelessWidget {
         children: [
           GestureDetector(
             onDoubleTap: () {
-              Navigator.pushNamed(context, '/category_edit_page');
+              Navigator.pushNamed(context, '/product_edit_page');
             },
             child: SizedBox(
               height: 672.5,
@@ -33,7 +34,7 @@ class ProductPage extends StatelessWidget {
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
-                      childAspectRatio: 3 / 4,
+                      childAspectRatio: 8.59 / 10,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
                   itemCount: 10,
@@ -43,18 +44,31 @@ class ProductPage extends StatelessWidget {
                       decoration: BoxDecoration(
                           gradient: categoryAndProduct,
                           borderRadius: BorderRadius.circular(30)),
-                      child: Column(
-                        children: [
-                          Image.asset('assets/images/burger_opened.png',
-                              height: height * 0.22, width: height * 0.22),
-                          const Text(
-                            'Pizza',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                                'assets/images/burger_cola_frenchfries.png',
+                                height: height * 0.18,
+                                width: height * 0.18),
+                            const Text(
+                              'Compo Burger',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            Text(
+                              '₹190',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },

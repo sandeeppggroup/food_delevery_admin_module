@@ -13,7 +13,15 @@ class CategoryPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: adminAppBar,
         elevation: 0,
-        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed('/admin_home_page');
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
         title: const Text(
           'Category',
           style: TextStyle(fontSize: 20, color: Colors.black),
@@ -33,7 +41,7 @@ class CategoryPage extends StatelessWidget {
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
-                      childAspectRatio: 3 / 4,
+                      childAspectRatio: 8.59 / 10,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
                   itemCount: 10,
@@ -45,14 +53,17 @@ class CategoryPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30)),
                       child: Column(
                         children: [
-                          Image.asset('assets/images/burger_opened.png',
-                              height: height * 0.22, width: height * 0.22),
+                          Image.asset(
+                            'assets/images/burger_opened.png',
+                            height: height * 0.2,
+                            width: height * 0.2,
+                          ),
                           const Text(
-                            'Pizza',
+                            'Burger',
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                                color: Colors.black),
                           ),
                         ],
                       ),

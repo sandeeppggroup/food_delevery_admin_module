@@ -1,5 +1,6 @@
 import 'package:admin_module/core/colors.dart';
 import 'package:admin_module/view/admin_module/widget/button1.dart';
+import 'package:admin_module/view/admin_module/widget/show_dialog.dart';
 import 'package:admin_module/view/admin_module/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class ProductAddPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: true,
         foregroundColor: Colors.black,
         backgroundColor: adminAppBar,
         title: const Text(
@@ -98,7 +100,10 @@ class ProductAddPage extends StatelessWidget {
               ButtonBig(
                 label: 'Save Product',
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, '/product_page');
+                  showItemSnackBar(context,
+                      massage: 'Product added succesfully',
+                      color: Colors.green);
                 },
               ),
             ],
