@@ -27,7 +27,7 @@ class SplashPage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/login');
+                    Navigator.pushReplacementNamed(context, '/login');
                   },
                   child: const Icon(
                     Icons.arrow_circle_right,

@@ -13,7 +13,13 @@ class ProductPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: adminAppBar,
         elevation: 0,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed('/admin_home_page');
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         foregroundColor: Colors.black,
         title: const Text(
           'Products',
@@ -42,7 +48,7 @@ class ProductPage extends StatelessWidget {
                     return Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          gradient: categoryAndProduct,
+                          gradient: linearGradient,
                           borderRadius: BorderRadius.circular(30)),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 15),

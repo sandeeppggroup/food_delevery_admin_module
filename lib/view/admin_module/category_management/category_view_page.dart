@@ -49,12 +49,12 @@ class CategoryPage extends StatelessWidget {
                     return Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          gradient: categoryAndProduct,
+                          gradient: linearGradient,
                           borderRadius: BorderRadius.circular(30)),
                       child: Column(
                         children: [
                           Image.asset(
-                            'assets/images/burger_opened.png',
+                            'assets/images/burger_cola_frenchfries1.png',
                             height: height * 0.2,
                             width: height * 0.2,
                           ),

@@ -5,8 +5,8 @@ import 'package:admin_module/view/admin_module/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class CategoryAddPage extends StatelessWidget {
-  const CategoryAddPage({super.key});
-
+  CategoryAddPage({super.key});
+  final TextEditingController _categoryName = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -34,7 +34,7 @@ class CategoryAddPage extends StatelessWidget {
                   height: height * 0.23,
                   width: width * 0.9,
                   decoration: BoxDecoration(
-                    gradient: categoryAndProduct,
+                    gradient: linearGradient,
                     border: const BorderDirectional(),
                     borderRadius: const BorderRadius.all(Radius.circular(30)),
                   ),
@@ -73,7 +73,8 @@ class CategoryAddPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.007,
               ),
-              TextForm1(label: 'Enter category name'),
+              TextForm1(
+                  label: 'Enter category name', controller: _categoryName),
               SizedBox(
                 height: height * 0.28,
               ),

@@ -9,15 +9,18 @@ class AdiminHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: adminAppBar,
-        elevation: 0,
+        // elevation: 0,
         automaticallyImplyLeading: false,
-        title: const Text('Adimin Home Page',
-            style: TextStyle(fontSize: 15, color: Colors.black)),
+        title: const Text('Admin Home Page',
+            style: TextStyle(fontSize: 18, color: Colors.black)),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(
+            right: 16.0, left: 16.0, top: 1.0, bottom: 16),
         child: GridView.count(
+          childAspectRatio: 10 / 10,
           crossAxisCount: 2,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
@@ -28,7 +31,7 @@ class AdiminHomePage extends StatelessWidget {
               item2: 'Management',
               radius: 30,
               onTap: () {
-                Navigator.pushNamed(context, '/category_page');
+                Navigator.pushReplacementNamed(context, '/category_page');
               },
             ),
             GridItemWidget(
@@ -36,14 +39,16 @@ class AdiminHomePage extends StatelessWidget {
               item2: 'Management',
               radius: 30,
               onTap: () {
-                Navigator.pushNamed(context, '/product_page');
+                Navigator.pushReplacementNamed(context, '/product_page');
               },
             ),
             GridItemWidget(
               item1: 'Order',
               item2: 'Management',
               radius: 30,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/order_view_page');
+              },
             ),
             GridItemWidget(
               item1: 'User',
@@ -61,7 +66,9 @@ class AdiminHomePage extends StatelessWidget {
               item1: 'Rider',
               item2: 'Management',
               radius: 30,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/rider_view_page');
+              },
             ),
             GridItemWidget(
               item1: 'Reports &',

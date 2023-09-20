@@ -5,7 +5,11 @@ import 'package:admin_module/view/admin_module/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class ProductEditPage extends StatelessWidget {
-  const ProductEditPage({super.key});
+  ProductEditPage({super.key});
+
+  final TextEditingController _productName = TextEditingController();
+  final TextEditingController _productPrice = TextEditingController();
+  final TextEditingController _productDiscription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +17,11 @@ class ProductEditPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: blackColor,
+        backgroundColor: adminAppBar,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pushReplacementNamed('/category_page');
+            Navigator.of(context).pushReplacementNamed('/product_page');
           },
           icon: const Icon(Icons.arrow_back),
         ),
@@ -38,7 +44,7 @@ class ProductEditPage extends StatelessWidget {
                   height: height * 0.23,
                   width: width * 0.9,
                   decoration: BoxDecoration(
-                    gradient: categoryAndProduct,
+                    gradient: linearGradient,
                     border: const BorderDirectional(),
                     borderRadius: const BorderRadius.all(Radius.circular(30)),
                   ),
@@ -81,7 +87,7 @@ class ProductEditPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.009,
               ),
-              TextForm1(label: 'Enter product name'),
+              TextForm1(label: 'Enter product name', controller: _productName),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -102,7 +108,8 @@ class ProductEditPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.009,
               ),
-              TextForm1(label: 'Enter product price'),
+              TextForm1(
+                  label: 'Enter product price', controller: _productPrice),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -123,7 +130,9 @@ class ProductEditPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.009,
               ),
-              TextForm1(label: 'Enter product description'),
+              TextForm1(
+                  label: 'Enter product description',
+                  controller: _productDiscription),
               SizedBox(
                 height: height * 0.08,
               ),
@@ -139,7 +148,8 @@ class ProductEditPage extends StatelessWidget {
                           Navigator.of(context)
                               .pushReplacementNamed('/product_page');
                           showItemSnackBar(context,
-                              massage: 'This product deleted successfully  !',
+                              massage:
+                                  'This product has deleted from the list\n successfully  !',
                               color: Colors.red);
                         },
                         massage:

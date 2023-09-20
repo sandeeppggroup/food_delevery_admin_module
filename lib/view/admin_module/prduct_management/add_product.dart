@@ -5,7 +5,11 @@ import 'package:admin_module/view/admin_module/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class ProductAddPage extends StatelessWidget {
-  const ProductAddPage({super.key});
+  ProductAddPage({super.key});
+
+  final TextEditingController _productName = TextEditingController();
+  final TextEditingController _productPrice = TextEditingController();
+  final TextEditingController _productDiscription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class ProductAddPage extends StatelessWidget {
                   height: height * 0.23,
                   width: width * 0.9,
                   decoration: BoxDecoration(
-                    gradient: categoryAndProduct,
+                    gradient: linearGradient,
                     border: const BorderDirectional(),
                     borderRadius: const BorderRadius.all(Radius.circular(30)),
                   ),
@@ -61,15 +65,17 @@ class ProductAddPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.06,
               ),
-              TextForm1(label: 'Enter product name'),
+              TextForm1(label: 'Enter product name', controller: _productName),
               SizedBox(
                 height: height * 0.03,
               ),
-              TextForm1(label: 'Enter price'),
+              TextForm1(label: 'Enter price', controller: _productPrice),
               SizedBox(
                 height: height * 0.03,
               ),
-              TextForm1(label: 'Enter product discription'),
+              TextForm1(
+                  label: 'Enter product discription',
+                  controller: _productDiscription),
               SizedBox(
                 height: height * 0.03,
               ),

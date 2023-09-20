@@ -32,10 +32,16 @@ class GridItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(item1,
-                  style: const TextStyle(color: Colors.black, fontSize: 18.0)),
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold)),
               Text(
                 item2,
-                style: const TextStyle(color: Colors.black, fontSize: 18.0),
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
