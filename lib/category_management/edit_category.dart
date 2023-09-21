@@ -1,32 +1,28 @@
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/widget/button2.dart';
-import 'package:admin_module/view/admin_module/widget/show_dialog.dart';
-import 'package:admin_module/view/admin_module/widget/text_form_field.dart';
+import 'package:admin_module/widget/button2.dart';
+import 'package:admin_module/widget/show_dialog.dart';
+import 'package:admin_module/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 
-class ProductEditPage extends StatelessWidget {
-  ProductEditPage({super.key});
-
-  final TextEditingController _productName = TextEditingController();
-  final TextEditingController _productPrice = TextEditingController();
-  final TextEditingController _productDiscription = TextEditingController();
-
+class CategoryEditPage extends StatelessWidget {
+  CategoryEditPage({super.key});
+  final TextEditingController _categoryName = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: blackColor,
         backgroundColor: adminAppBar,
+        foregroundColor: blackColor,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pushReplacementNamed('/product_page');
+            Navigator.of(context).pushReplacementNamed('/category_page');
           },
           icon: const Icon(Icons.arrow_back),
         ),
         title: const Text(
-          'Edit Product',
+          'Edit Category',
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -76,28 +72,7 @@ class ProductEditPage extends StatelessWidget {
                     width: width * 0.07,
                   ),
                   const Text(
-                    'Edit Product name',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: height * 0.009,
-              ),
-              TextForm1(label: 'Enter product name', controller: _productName),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: width * 0.07,
-                  ),
-                  const Text(
-                    'Edit Product Price',
+                    'Edit category name',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -109,32 +84,9 @@ class ProductEditPage extends StatelessWidget {
                 height: height * 0.009,
               ),
               TextForm1(
-                  label: 'Enter product price', controller: _productPrice),
+                  label: 'Enter category name', controller: _categoryName),
               SizedBox(
-                height: height * 0.02,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: width * 0.07,
-                  ),
-                  const Text(
-                    'Edit Product Description',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: height * 0.009,
-              ),
-              TextForm1(
-                  label: 'Enter product description',
-                  controller: _productDiscription),
-              SizedBox(
-                height: height * 0.08,
+                height: height * 0.3,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,14 +98,15 @@ class ProductEditPage extends StatelessWidget {
                         context,
                         onPressedFunction: () {
                           Navigator.of(context)
-                              .pushReplacementNamed('/product_page');
+                              .pushReplacementNamed('/category_page');
                           showItemSnackBar(context,
                               massage:
-                                  'This product has deleted from the list\n successfully  !',
+                                  'This category has deleted from the list\n successfully  !  !',
                               color: Colors.red);
                         },
                         massage:
-                            '''\n\nDo you want to proceed with deleting this product?''',
+                            '''Deleting this category will result in the permanent removal of all products within it !.
+                            \n\nAre you sure you want to proceed with deleting this category?''',
                       );
                       // Navigator.pop(context);
                     },
@@ -162,10 +115,10 @@ class ProductEditPage extends StatelessWidget {
                     label: 'Update',
                     onPressed: () {
                       showItemSnackBar(context,
-                          massage: 'Product Updated Successfully  !',
+                          massage: 'Category Updated Successfully  !',
                           color: Colors.blue);
                       Navigator.of(context)
-                          .pushReplacementNamed('/product_page');
+                          .pushReplacementNamed('/category_page');
                     },
                   ),
                 ],

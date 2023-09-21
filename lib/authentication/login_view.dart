@@ -1,6 +1,6 @@
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/widget/logo.dart';
-import 'package:admin_module/view/admin_module/widget/shadow.dart';
+import 'package:admin_module/widget/logo.dart';
+import 'package:admin_module/widget/shadow.dart';
 import 'package:flutter/material.dart';
 
 class LonginPage extends StatelessWidget {

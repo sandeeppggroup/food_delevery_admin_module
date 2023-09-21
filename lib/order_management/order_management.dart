@@ -1,10 +1,10 @@
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/order_management/widget.dart/home_delivery.dart';
-import 'package:admin_module/view/admin_module/order_management/widget.dart/take_away.dart';
+import 'package:admin_module/order_management/widget.dart/home_delivery.dart';
+import 'package:admin_module/order_management/widget.dart/take_away.dart';
 import 'package:flutter/material.dart';
 
 class OrderViewPage extends StatefulWidget {
-  OrderViewPage({super.key});
+  const OrderViewPage({super.key});
 
   @override
   State<OrderViewPage> createState() => _OrderViewPageState();

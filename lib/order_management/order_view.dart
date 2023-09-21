@@ -1,6 +1,5 @@
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/widget/button2.dart';
-import 'package:flutter/gestures.dart';
+import 'package:admin_module/widget/button2.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -42,10 +41,10 @@ class DeliveryDetails extends StatelessWidget {
                   child: Container(
                     height: height * 0.23,
                     width: width * 0.8,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 240, 215, 224),
-                      border: const BorderDirectional(),
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                      border: BorderDirectional(),
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
                     ),
                     child: GestureDetector(
                       onTap: () {

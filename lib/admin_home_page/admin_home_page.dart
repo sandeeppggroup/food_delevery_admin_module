@@ -1,5 +1,5 @@
+import 'package:admin_module/admin_home_page/widget/grid_item_widget.dart';
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/admin_home_page/widget/grid_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class AdiminHomePage extends StatelessWidget {

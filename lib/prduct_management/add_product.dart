@@ -1,22 +1,27 @@
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/widget/button1.dart';
-import 'package:admin_module/view/admin_module/widget/show_dialog.dart';
-import 'package:admin_module/view/admin_module/widget/text_form_field.dart';
+import 'package:admin_module/widget/button1.dart';
+import 'package:admin_module/widget/show_dialog.dart';
+import 'package:admin_module/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 
-class CategoryAddPage extends StatelessWidget {
-  CategoryAddPage({super.key});
-  final TextEditingController _categoryName = TextEditingController();
+class ProductAddPage extends StatelessWidget {
+  ProductAddPage({super.key});
+
+  final TextEditingController _productName = TextEditingController();
+  final TextEditingController _productPrice = TextEditingController();
+  final TextEditingController _productDiscription = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: true,
         foregroundColor: Colors.black,
         backgroundColor: adminAppBar,
         title: const Text(
-          'Add New Category',
+          'Add New Product',
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -51,39 +56,59 @@ class CategoryAddPage extends StatelessWidget {
                 height: height * 0.02,
               ),
               const Text(
-                'Add Image',
+                'Add Product Image',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey),
               ),
               SizedBox(
-                height: height * 0.08,
+                height: height * 0.06,
+              ),
+              TextForm1(label: 'Enter product name', controller: _productName),
+              SizedBox(
+                height: height * 0.03,
+              ),
+              TextForm1(label: 'Enter price', controller: _productPrice),
+              SizedBox(
+                height: height * 0.03,
+              ),
+              TextForm1(
+                  label: 'Enter product discription',
+                  controller: _productDiscription),
+              SizedBox(
+                height: height * 0.03,
               ),
               Row(
                 children: [
                   SizedBox(
                     width: width * 0.08,
                   ),
-                  const Text('Add category',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  const Text(
+                    'Add Extra            :',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: width * 0.1,
+                  ),
+                  Switch(
+                    value: false,
+                    onChanged: (value) {},
+                  )
                 ],
               ),
               SizedBox(
-                height: height * 0.007,
-              ),
-              TextForm1(
-                  label: 'Enter category name', controller: _categoryName),
-              SizedBox(
-                height: height * 0.28,
+                height: height * 0.075,
               ),
               ButtonBig(
-                label: 'Save',
+                label: 'Save Product',
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, '/product_page');
                   showItemSnackBar(context,
-                      massage: 'Category Added Successfully',
+                      massage: 'Product added succesfully',
                       color: Colors.green);
                 },
               ),

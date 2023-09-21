@@ -1,15 +1,20 @@
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/widget/button1.dart';
+import 'package:admin_module/widget/button1.dart';
 import 'package:flutter/material.dart';
 
-class EditRider extends StatelessWidget {
-  const EditRider({super.key});
+class AddRider extends StatelessWidget {
+  const AddRider({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rider Management'),
+        backgroundColor: adminAppBar,
+        foregroundColor: blackColor,
+        title: const Text(
+          'Rider Management',
+          style: TextStyle(color: blackColor),
+        ),
       ),
       body: Column(
         children: [
@@ -18,7 +23,7 @@ class EditRider extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'Edit new rider',
+                  'Add new rider',
                   style: TextStyle(
                       color: buttonColor,
                       fontSize: 23,
@@ -54,7 +59,7 @@ class EditRider extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const Text('Edit image'),
+          const Text('Add image'),
           const SizedBox(
             height: 10,
           ),
@@ -153,8 +158,10 @@ class EditRider extends StatelessWidget {
             height: 50,
           ),
           ButtonBig(
-            label: 'Update',
-            onPressed: () {},
+            label: 'Save',
+            onPressed: () {
+              Navigator.pop(context);
+            },
           )
         ],
       ),

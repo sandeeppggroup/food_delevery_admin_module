@@ -1,5 +1,5 @@
 import 'package:admin_module/core/colors.dart';
-import 'package:admin_module/view/admin_module/order_management/order_view.dart';
+import 'package:admin_module/order_management/order_view.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

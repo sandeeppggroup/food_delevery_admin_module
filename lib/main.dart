@@ -1,18 +1,17 @@
-import 'package:admin_module/view/admin_module/rider_management/add_rider.dart';
-import 'package:admin_module/view/admin_module/rider_management/edit_rider.dart';
-import 'package:admin_module/view/admin_module/rider_management/rider_details_view.dart';
-import 'package:admin_module/view/admin_module/category_management/add_category.dart';
-import 'package:admin_module/view/admin_module/category_management/category_view_page.dart';
-import 'package:admin_module/view/admin_module/authentication/login_view.dart';
-import 'package:admin_module/view/admin_module/admin_home_page/admin_home_page.dart';
-import 'package:admin_module/view/admin_module/category_management/edit_category.dart';
-import 'package:admin_module/view/admin_module/order_management/order_management.dart';
-import 'package:admin_module/view/admin_module/prduct_management/add_product.dart';
-import 'package:admin_module/view/admin_module/prduct_management/edit_product.dart';
-import 'package:admin_module/view/admin_module/prduct_management/product_view_page.dart';
+import 'package:admin_module/admin_home_page/admin_home_page.dart';
+import 'package:admin_module/authentication/login_view.dart';
+import 'package:admin_module/category_management/add_category.dart';
+import 'package:admin_module/category_management/category_view_page.dart';
+import 'package:admin_module/category_management/edit_category.dart';
+import 'package:admin_module/order_management/order_management.dart';
+import 'package:admin_module/prduct_management/add_product.dart';
+import 'package:admin_module/prduct_management/edit_product.dart';
+import 'package:admin_module/prduct_management/product_view_page.dart';
+import 'package:admin_module/rider_management/add_rider.dart';
+import 'package:admin_module/rider_management/edit_rider.dart';
+import 'package:admin_module/rider_management/rider_details_view.dart';
+import 'package:admin_module/splash/splash_view.dart';
 import 'package:flutter/material.dart';
-
-import 'view/admin_module/splash/splash_view.dart';
 
 void main() {
   runApp(const MyApp());
