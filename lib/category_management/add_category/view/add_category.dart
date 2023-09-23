@@ -3,6 +3,7 @@ import 'package:admin_module/widget/button1.dart';
 import 'package:admin_module/widget/show_dialog.dart';
 import 'package:admin_module/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CategoryAddPage extends StatelessWidget {
   CategoryAddPage({super.key});
@@ -30,21 +31,23 @@ class CategoryAddPage extends StatelessWidget {
                 height: height * 0.04,
               ),
               Center(
-                child: Container(
-                  height: height * 0.23,
-                  width: width * 0.9,
-                  decoration: BoxDecoration(
-                    gradient: linearGradient,
-                    border: const BorderDirectional(),
-                    borderRadius: const BorderRadius.all(Radius.circular(30)),
-                  ),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
+                child: GestureDetector(
+                  child: Container(
+                    height: height * 0.23,
+                    width: width * 0.9,
+                    decoration: BoxDecoration(
+                      gradient: linearGradient,
+                      border: const BorderDirectional(),
+                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                    ),
+                    child: const Icon(
                       Icons.image,
-                      size: 100,
+                      size: 180,
                     ),
                   ),
+                  onTap: () {
+                    ImagePicker();
+                  },
                 ),
               ),
               SizedBox(

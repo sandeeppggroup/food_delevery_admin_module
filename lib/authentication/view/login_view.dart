@@ -6,13 +6,14 @@ import 'package:admin_module/authentication/service/login_service.dart';
 import 'package:admin_module/core/colors.dart';
 import 'package:admin_module/widget/logo.dart';
 import 'package:admin_module/widget/shadow.dart';
+import 'package:admin_module/widget/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class LonginPage extends StatefulWidget {
-  LonginPage({super.key});
+  const LonginPage({super.key});
 
   @override
   State<LonginPage> createState() => _LonginPageState();
@@ -147,60 +148,51 @@ class _LonginPageState extends State<LonginPage> {
                               SizedBox(
                                 height: height * .065,
                               ),
-                              InkWell(
-                                onTap: () async {
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: buttonColor,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Login',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                onPressed: () async {
                                   log('button clicked');
-                                  dynamic token1 = await admin.loginAdmin(
+                                  dynamic result = await admin.loginAdmin(
                                     mobile.text,
                                   );
-                                  log('in view : $token1');
 
-                                  token = token1;
-                                  log('in token : $token');
+                                  if (result == false) {
+                                    showItemSnackBar(context,
+                                        massage: 'invalid username',
+                                        color: Colors.red);
+                                    return;
+                                  } else {
+                                    dynamic token = result['data'];
+                                    // setState(
+                                    //   () async {
+                                    //     isAdminLoggedIn = true;
+                                    //     this.token = token;
+                                    //     sharedPreferences =
+                                    //         await SharedPreferences
+                                    //             .getInstance();
+                                    //     sharedPreferences!
+                                    //         .setString('token', token);
+                                    //   },
+                                    // );
+                                    showItemSnackBar(context,
+                                        massage: result['message'],
+                                        color: Colors.green);
 
-                                  // Navigator.pushNamed(
-                                  //     (context), '/admin_home_page');
-
-                                  Navigator.of(context)
-                                      .pushNamed('/admin_home_page');
+                                    Navigator.pushReplacementNamed(
+                                        context, '/admin_home_page');
+                                  }
                                 },
-                                child: Container(
-                                  child: Center(
-                                    child: Text('Login'),
-                                  ),
-                                  decoration: BoxDecoration(
-                                      color: buttonColor,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  height: height * .04,
-                                  width: width * .7,
-                                  // child: ElevatedButton(
-                                  //   style: ElevatedButton.styleFrom(
-                                  //     backgroundColor: buttonColor,
-                                  //     elevation: 0,
-                                  //     shape: RoundedRectangleBorder(
-                                  //       borderRadius: BorderRadius.circular(50),
-                                  //     ),
-                                  //   ),
-                                  //   child: const Text(
-                                  //     'Login',
-                                  //     style: TextStyle(
-                                  //         color: Colors.white, fontSize: 18),
-                                  //   ),
-                                  //   onPressed: () {
-                                  //     // log('button clicked');
-                                  //     // dynamic token1 = admin.loginAdmin(
-                                  //     //   mobile.text,
-                                  //     // );
-                                  //     // log('in view : $token1');
-
-                                  //     // token = token1;
-                                  //     // log('in token : $token');
-
-                                  //     // Navigator.pushNamed(
-                                  //     //     (context), '/admin_home_page');
-                                  //   },
-                                  // ),
-                                ),
                               ),
                             ],
                           ),

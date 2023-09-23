@@ -5,7 +5,7 @@ import 'package:admin_module/api/api_end_url.dart';
 import 'package:dio/dio.dart';
 
 class AdminLoginservice {
-  final apiEndUrl = ApiBaseUrl().baseUrl + ApiEndUrl().signIn;
+  final apiSignIndUrl = ApiBaseUrl().baseUrl + ApiEndUrl().signIn;
 
   Future<dynamic> loginAdmin(String mobile) async {
     log('function call');
@@ -13,7 +13,7 @@ class AdminLoginservice {
 
     try {
       var response = await dio.post(
-        apiEndUrl,
+        apiSignIndUrl,
         data: {'mobile': mobile},
       );
 
@@ -26,14 +26,17 @@ class AdminLoginservice {
         if (response.data['success'] == true) {
           log('error message :  ${response.data['message']}'); // success message
 
-          return response.data['data'];
+          return response.data;
         } else {
           log(response.data['message']); // error message
+          return response.data;
         }
+      } else if (response.statusCode == 401) {
+        return response.data;
       }
       // ignore: deprecated_member_use
     } catch (error) {
-      log('Error: $error');
+      return false;
     }
   }
 

@@ -24,7 +24,7 @@ class GridItemWidget extends StatelessWidget {
         child: Container(
           width: 165,
           decoration: BoxDecoration(
-            color: adminAppBar,
+            color: Colors.blue.shade100,
             borderRadius:
                 BorderRadius.circular(radius), // Set the border radius
           ),
