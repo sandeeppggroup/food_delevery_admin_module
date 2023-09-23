@@ -1,5 +1,5 @@
 import 'package:admin_module/admin_home_page/admin_home_page.dart';
-import 'package:admin_module/authentication/login_view.dart';
+import 'package:admin_module/authentication/view/login_view.dart';
 import 'package:admin_module/category_management/add_category.dart';
 import 'package:admin_module/category_management/category_view_page.dart';
 import 'package:admin_module/category_management/edit_category.dart';
@@ -13,8 +13,10 @@ import 'package:admin_module/rider_management/rider_details_view.dart';
 import 'package:admin_module/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const SplashPage(),
-        '/login': (context) => const LonginPage(),
+        '/login': (context) => LonginPage(),
         '/admin_home_page': (context) => const AdiminHomePage(),
         '/category_page': (context) => const CategoryPage(),
         '/category_add_page': (context) => CategoryAddPage(),
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         '/product_page': (context) => const ProductPage(),
         '/product_add_page': (context) => ProductAddPage(),
         '/product_edit_page': (context) => ProductEditPage(),
-        '/order_view_page': (context) => OrderViewPage(),
+        '/order_view_page': (context) => const OrderViewPage(),
         '/add_rider': (context) => const AddRider(),
         '/rider_view_page': (context) => RiderViewPage(),
         '/edit_rider': (context) => const EditRider(),
