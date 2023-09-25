@@ -1,4 +1,4 @@
-import 'package:admin_module/core/colors.dart';
+import 'package:admin_module/core/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

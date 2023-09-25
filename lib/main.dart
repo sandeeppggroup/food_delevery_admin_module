@@ -1,17 +1,21 @@
-import 'package:admin_module/admin_home_page/admin_home_page.dart';
-import 'package:admin_module/authentication/view/login_view.dart';
-import 'package:admin_module/category_management/add_category.dart';
-import 'package:admin_module/category_management/category_view_page.dart';
-import 'package:admin_module/category_management/edit_category.dart';
-import 'package:admin_module/order_management/order_management.dart';
-import 'package:admin_module/prduct_management/add_product.dart';
-import 'package:admin_module/prduct_management/edit_product.dart';
-import 'package:admin_module/prduct_management/product_view_page.dart';
-import 'package:admin_module/rider_management/add_rider.dart';
-import 'package:admin_module/rider_management/edit_rider.dart';
-import 'package:admin_module/rider_management/rider_details_view.dart';
-import 'package:admin_module/splash/splash_view.dart';
+import 'package:admin_module/controllers/category_service/category_add_controller.dart';
+import 'package:admin_module/controllers/login_service/provider/login_provider/login_service.dart';
+import 'package:admin_module/models/admin_model/admin_login_model.dart';
+import 'package:admin_module/views/admin_home_page/admin_home_page.dart';
+import 'package:admin_module/views/login_page/login_view.dart';
+import 'package:admin_module/views/category_management/add_category/add_category.dart';
+import 'package:admin_module/views/category_management/category_view_page.dart';
+import 'package:admin_module/views/category_management/edit_category/edit_category.dart';
+import 'package:admin_module/views/order_management/order_management/order_management.dart';
+import 'package:admin_module/views/prduct_management/add_product/add_product.dart';
+import 'package:admin_module/views/prduct_management/edit_product/edit_product.dart';
+import 'package:admin_module/views/prduct_management/product_view_page.dart';
+import 'package:admin_module/views/rider_management/add_rider.dart';
+import 'package:admin_module/views/rider_management/edit_rider.dart';
+import 'package:admin_module/views/rider_management/rider_details_view.dart';
+import 'package:admin_module/views/splash/splash_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   runApp(
@@ -24,23 +28,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => const SplashPage(),
-        '/login': (context) => LonginPage(),
-        '/admin_home_page': (context) => const AdiminHomePage(),
-        '/category_page': (context) => const CategoryPage(),
-        '/category_add_page': (context) => CategoryAddPage(),
-        '/category_edit_page': (context) => CategoryEditPage(),
-        '/product_page': (context) => const ProductPage(),
-        '/product_add_page': (context) => ProductAddPage(),
-        '/product_edit_page': (context) => ProductEditPage(),
-        '/order_view_page': (context) => const OrderViewPage(),
-        '/add_rider': (context) => const AddRider(),
-        '/rider_view_page': (context) => RiderViewPage(),
-        '/edit_rider': (context) => const EditRider(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AdminLoginModel()),
+        ChangeNotifierProvider(create: (context) => CategoryAddController()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/': (context) => const SplashPage(),
+          '/login': (context) => LoginPage(),
+          '/admin_home_page': (context) => const AdiminHomePage(),
+          '/category_page': (context) => const CategoryPage(),
+          '/category_add_page': (context) => CategoryAddPage(),
+          '/category_edit_page': (context) => CategoryEditPage(),
+          '/product_page': (context) => const ProductPage(),
+          '/product_add_page': (context) => ProductAddPage(),
+          '/product_edit_page': (context) => ProductEditPage(),
+          '/order_view_page': (context) => const OrderViewPage(),
+          '/add_rider': (context) => const AddRider(),
+          '/rider_view_page': (context) => RiderViewPage(),
+          '/edit_rider': (context) => const EditRider(),
+        },
+      ),
     );
   }
 }

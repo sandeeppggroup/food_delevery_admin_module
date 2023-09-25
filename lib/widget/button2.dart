@@ -1,4 +1,4 @@
-import 'package:admin_module/core/colors.dart';
+import 'package:admin_module/core/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 class ButtonSmall extends StatelessWidget {
