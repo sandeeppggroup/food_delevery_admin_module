@@ -1,4 +1,4 @@
-import 'package:admin_module/controllers/category_service/category_add_controller.dart';
+import 'package:admin_module/controllers/category_service/category_add_controller/category_service.dart';
 import 'package:admin_module/controllers/login_service/provider/login_provider/login_service.dart';
 import 'package:admin_module/models/admin_model/admin_login_model.dart';
 import 'package:admin_module/views/admin_home_page/admin_home_page.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AdminLoginModel()),
-        ChangeNotifierProvider(create: (context) => CategoryAddController()),
+        ChangeNotifierProvider(create: (context) => CategoryProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,7 +1,5 @@
 import 'dart:developer';
-
 import 'package:admin_module/controllers/login_service/provider/login_provider/login_service.dart';
-import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/widget/show_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +55,7 @@ class _SplashPageState extends State<SplashPage> {
                 ),
                 Center(
                   child: SizedBox(
-                    height: height * 0.59,
+                    height: height * 0.69,
                     child: Image.asset('assets/images/frenchfries.png'),
                   ),
                 ),

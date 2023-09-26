@@ -42,14 +42,12 @@ class AdminLoginservice {
   Future<dynamic> checkAdminLoginStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
 
     final token = prefs.getString('token');
     // String token = 'fjioewoifjosdfj';
     log('token   :  $token');
-    if (token == null) {
-      return false;
-    }
+
     Dio dio = Dio();
     if (token != null) {
       try {

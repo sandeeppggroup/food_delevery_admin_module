@@ -1,5 +1,6 @@
 import 'package:admin_module/views/admin_home_page/widget/grid_item_widget.dart';
 import 'package:admin_module/core/colors/colors.dart';
+import 'package:admin_module/widget/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,8 +22,14 @@ class AdiminHomePage extends StatelessWidget {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 prefs.remove('token');
                 // ignore: use_build_context_synchronously
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/login', (route) => false);
+                showDeleteConfirmationDialog(
+                  context,
+                  onPressedFunction: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/login', (route) => false);
+                  },
+                  massage: 'Do you want to logout from the console?',
+                );
               },
               icon: const Icon(
                 Icons.logout,
