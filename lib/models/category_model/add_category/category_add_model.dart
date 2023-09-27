@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class CategoryAddModel {
+class CategoryModel {
   String name;
   Image image;
 
-  CategoryAddModel({
+  CategoryModel({
     required this.name,
     required this.image,
   });
 
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'image': image,
-    };
+  factory CategoryModel.fromJson(Map<String, dynamic> json) {
+    return CategoryModel(
+      name: json['name'],
+      image: json['image'],
+    );
   }
 }

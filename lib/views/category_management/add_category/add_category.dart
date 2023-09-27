@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:admin_module/controllers/category_service/category_add_controller.dart';
+import 'package:admin_module/controllers/category_service/category_controller/category_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/widget/button1.dart';
 import 'package:admin_module/widget/show_dialog.dart';
@@ -17,7 +17,7 @@ class CategoryAddPage extends StatefulWidget {
 }
 
 class _CategoryAddPageState extends State<CategoryAddPage> {
-  CategoryAddController categoryAddController = CategoryAddController();
+  CategoryProvider categoryProvider = CategoryProvider();
 
   final TextEditingController _categoryName = TextEditingController();
 
@@ -45,7 +45,7 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Consumer<CategoryAddController>(
+      body: Consumer<CategoryProvider>(
         builder: (context, value, child) => Padding(
           padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
           child: SingleChildScrollView(
@@ -128,7 +128,12 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
                 ),
                 ButtonBig(
                   label: 'Add to category',
-                  onPressed: () {
+                  onPressed: () async {
+                    if (_categoryName.text.isNotEmpty && _image != null) {
+                      await Provider.of<CategoryProvider>(context,
+                              listen: false)
+                          .addCategory(_categoryName.text, _image!);
+                    }
                     Navigator.pop(context);
                     showItemSnackBar(context,
                         massage: 'Category Added Successfully',
