@@ -31,10 +31,12 @@ class AdminLoginservice {
           return response.data;
         }
       } else if (response.statusCode == 401) {
+        log('error message :  ${response.data['message']}');
         return response.data;
       }
       // ignore: deprecated_member_use
     } catch (error) {
+      log('error message : $error');
       return false;
     }
   }
@@ -42,7 +44,7 @@ class AdminLoginservice {
   Future<dynamic> checkAdminLoginStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: 10));
 
     final token = prefs.getString('token');
     // String token = 'fjioewoifjosdfj';
@@ -72,7 +74,7 @@ class AdminLoginservice {
           }
         }
       } catch (e) {
-        log('error message in checkadminlog $e');
+        log('error message in check admin log :-   $e');
         return false;
       }
     } else {

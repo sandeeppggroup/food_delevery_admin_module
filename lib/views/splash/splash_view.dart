@@ -16,18 +16,19 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    checkAdminLoginStatus();
+    checkAdminLoginStatusInSplash();
   }
 
-  void checkAdminLoginStatus() async {
+  void checkAdminLoginStatusInSplash() async {
     dynamic tokenStatus = await adminLoginService.checkAdminLoginStatus();
     log(" $tokenStatus");
     if (tokenStatus != false) {
       if (tokenStatus['success'] == true) {
-        log('if case');
+        log('if case in splash screen is successful');
         // ignore: use_build_context_synchronously
         showItemSnackBar(context,
-            massage: tokenStatus['message'], color: Colors.blueGrey);
+            massage: tokenStatus['message'],
+            color: const Color.fromARGB(255, 2, 194, 104));
         // ignore: use_build_context_synchronously
         Navigator.pushReplacementNamed(context, '/admin_home_page');
       }

@@ -17,7 +17,7 @@ class CategoryAddPage extends StatefulWidget {
 }
 
 class _CategoryAddPageState extends State<CategoryAddPage> {
-  CategoryProvider categoryProvider = CategoryProvider();
+  // CategoryProvider categoryProvider = CategoryProvider();
 
   final TextEditingController _categoryName = TextEditingController();
 
