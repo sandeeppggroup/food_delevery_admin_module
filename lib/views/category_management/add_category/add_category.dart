@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class CategoryAddPage extends StatefulWidget {
-  CategoryAddPage({super.key});
+  const CategoryAddPage({super.key});
 
   @override
   State<CategoryAddPage> createState() => _CategoryAddPageState();
@@ -46,7 +46,7 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
         ),
       ),
       body: Consumer<CategoryProvider>(
-        builder: (context, value, child) => Padding(
+        builder: (context, categeryList, child) => Padding(
           padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
           child: SingleChildScrollView(
             child: Column(
@@ -60,22 +60,65 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
                     child: Column(
                       children: [
                         _image != null
-                            ? SizedBox(
+                            ? Container(
+                                height: 300,
                                 width: 250,
-                                height: 200,
-                                child: Image.file(
-                                  _image!,
-                                  width: 250,
-                                  height: 250,
-                                  fit: BoxFit.fill,
-                                ),
+                                decoration: BoxDecoration(
+                                    gradient: linearGradient,
+                                    border: Border.all(),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Stack(children: [
+                                  Positioned(
+                                    child: Center(
+                                      child: SizedBox(
+                                        height: 250,
+                                        width: 210,
+                                        child: Image.file(
+                                          _image!,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
                               )
-                            : SizedBox(
-                                height: 250,
+                            : Container(
+                                height: 300,
                                 width: 250,
-                                child: Image.network(
-                                    'https://w7.pngwing.com/pngs/512/923/png-transparent-silhouette-of-burger-and-drinking-cup-fast-food-junk-food-hamburger-computer-icons-fast-food-icon-food-fast-food-restaurant-logo-thumbnail.png'),
+                                decoration: BoxDecoration(
+                                    border: Border.all(),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Stack(
+                                  children: [
+                                    Center(
+                                      child: SizedBox(
+                                        height: 300,
+                                        width: 230,
+                                        child: Image.asset(
+                                            '''assets/images/add_category.png'''),
+                                      ),
+                                    ),
+                                    const Positioned(
+                                      top: 190,
+                                      left: 80,
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 100,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Text(
+                          'Add Image',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
                         customButton(
                           title: 'Pick from Gallery',
                           icon: Icons.image,
@@ -96,17 +139,7 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.02,
-                ),
-                const Text(
-                  'Add Image',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
-                ),
-                SizedBox(
-                  height: height * 0.05,
+                  height: height * 0.03,
                 ),
                 Row(
                   children: [
@@ -124,7 +157,7 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
                 TextForm1(
                     label: 'Enter category name', controller: _categoryName),
                 SizedBox(
-                  height: height * 0.05,
+                  height: height * 0.099,
                 ),
                 ButtonBig(
                   label: 'Add to category',
@@ -134,7 +167,9 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
                               listen: false)
                           .addCategory(_categoryName.text, _image!);
                     }
+                    // ignore: use_build_context_synchronously
                     Navigator.pop(context);
+                    // ignore: use_build_context_synchronously
                     showItemSnackBar(context,
                         massage: 'Category Added Successfully',
                         color: Colors.green);

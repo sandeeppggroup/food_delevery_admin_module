@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:admin_module/core/constants/api/api_base_url.dart';
 import 'package:admin_module/core/constants/api/api_end_url.dart';
-import 'package:admin_module/models/category_model/add_category/category_add_model.dart';
+import 'package:admin_module/models/category_model/category_model.dart';
 import 'package:dio/dio.dart';
 
 class CategoryService {
@@ -14,12 +14,13 @@ class CategoryService {
 
   String get_last_image_path_from_url(String url) {
     final uri = Uri.parse(url);
+    log('uri : $uri');
     final pathSegments = uri.pathSegments;
+    log('pathSegments : $pathSegments');
     final lastPathSegment = pathSegments.last;
+    log('lastPathSegment : $lastPathSegment');
     return lastPathSegment;
   }
-
-// // Example usage:
 
   Future<void>? addCategory(String name, File image) async {
     final imageUrl = image.path;
@@ -56,11 +57,14 @@ class CategoryService {
   Future<List<CategoryModel>?> getCategories() async {
     try {
       Response response = await dio.get(getCategoryUrl);
-
+      log('get category in service : ${response.data.toString()}');
       if (response.statusCode == 200) {
-        List<CategoryModel> categories = (response.data as List)
+        List<dynamic> categoryJsonList = (response.data['getCategory']);
+
+        List<CategoryModel> categories = categoryJsonList
             .map((categoryJson) => CategoryModel.fromJson(categoryJson))
             .toList();
+
         return categories;
       } else {
         log('Failed to fetch categories');

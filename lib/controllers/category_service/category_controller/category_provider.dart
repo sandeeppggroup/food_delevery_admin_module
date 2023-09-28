@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:admin_module/controllers/category_service/category_controller/category_service.dart';
-import 'package:admin_module/models/category_model/add_category/category_add_model.dart';
+import 'package:admin_module/models/category_model/category_model.dart';
 import 'package:flutter/material.dart';
 
 class CategoryProvider with ChangeNotifier {
@@ -21,12 +21,13 @@ class CategoryProvider with ChangeNotifier {
     log('add category in provider:  ${image.path.toString()}');
 
     await categoryService.addCategory(name, image);
-    // _fetchCategories();
+    _fetchCategories();
   }
 
   Future<void> _fetchCategories() async {
     _categories = await categoryService.getCategories();
     log('fetch Categories in provider: ${_categories.toString()}');
+    // _categories?.addAll(categories);
     notifyListeners();
   }
 }
