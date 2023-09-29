@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:admin_module/controllers/login_service/provider/login_provider/login_service.dart';
+import 'package:admin_module/controllers/login_service/login_service.dart';
 import 'package:admin_module/widget/show_dialog.dart';
 import 'package:flutter/material.dart';
 

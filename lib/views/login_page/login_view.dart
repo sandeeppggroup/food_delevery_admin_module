@@ -2,7 +2,7 @@
 
 import 'dart:developer';
 
-import 'package:admin_module/controllers/login_service/provider/login_provider/login_service.dart';
+import 'package:admin_module/controllers/login_service/login_service.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/widget/logo.dart';
 import 'package:admin_module/widget/shadow.dart';

@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:admin_module/controllers/category_service/category_controller/category_service.dart';
+import 'package:admin_module/controllers/category/category_survice/category_service.dart';
 import 'package:admin_module/models/category_model/category_model.dart';
 import 'package:flutter/material.dart';
 

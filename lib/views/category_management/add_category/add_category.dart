@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:admin_module/controllers/category_service/category_controller/category_provider.dart';
+import 'package:admin_module/controllers/category/category_controller/category_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/widget/button1.dart';
 import 'package:admin_module/widget/show_dialog.dart';

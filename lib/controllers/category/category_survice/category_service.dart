@@ -9,7 +9,7 @@ import 'package:dio/dio.dart';
 
 class CategoryService {
   final Dio dio = Dio();
-  final getCategoryUrl = ApiBaseUrl().baseUrl + ApiEndUrl().getCategory;
+  final getCategoryUrl = ApiBaseUrl().baseUrl + ApiEndUrl().getAllCategory;
   final addCategoryUrl = ApiBaseUrl().baseUrl + ApiEndUrl().addCategory;
 
   String get_last_image_path_from_url(String url) {

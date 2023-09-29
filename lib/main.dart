@@ -1,4 +1,4 @@
-import 'package:admin_module/controllers/category_service/category_controller/category_provider.dart';
+import 'package:admin_module/controllers/category/category_controller/category_provider.dart';
 import 'package:admin_module/models/admin_model/admin_login_model.dart';
 import 'package:admin_module/views/admin_home_page/admin_home_page.dart';
 import 'package:admin_module/views/login_page/login_view.dart';
