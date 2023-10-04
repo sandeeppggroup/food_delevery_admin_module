@@ -59,7 +59,7 @@ class CategoryService {
         List<CategoryModel> categories = categoryJsonList
             .map((categoryJson) => CategoryModel.fromJson(categoryJson))
             .toList();
-
+        log('in categories allCategories:   ${categories.toString()}');
         return categories;
       } else {
         log('Failed to fetch categories');

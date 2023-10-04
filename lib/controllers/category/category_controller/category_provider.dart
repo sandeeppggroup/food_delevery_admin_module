@@ -30,6 +30,4 @@ class CategoryProvider with ChangeNotifier {
     // _categories?.addAll(categories);
     notifyListeners();
   }
-
-  map(DropdownMenuItem Function(CategoryModel categories) param0) {}
 }

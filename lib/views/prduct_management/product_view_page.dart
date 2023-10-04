@@ -1,6 +1,11 @@
+import 'dart:developer';
+
+import 'package:admin_module/controllers/product/product_controler/product_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
+import 'package:admin_module/models/product_model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
@@ -27,95 +32,100 @@ class ProductPage extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: Stack(
-        children: [
-          GestureDetector(
-            onDoubleTap: () {
-              Navigator.pushNamed(context, '/product_edit_page');
-            },
-            child: SizedBox(
-              height: 672.5,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      childAspectRatio: 8.59 / 10,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20),
-                  itemCount: 10,
-                  itemBuilder: (BuildContext ctx, index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          gradient: linearGradient,
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                                'assets/images/burger_cola_frenchfries.png',
-                                height: height * 0.18,
-                                width: height * 0.18),
-                            const Text(
-                              'Compo Burger',
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            ),
-                            Text(
-                              '₹190',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            )
-                          ],
+      body:
+          Consumer<ProductProvider>(builder: (context, productProvider, child) {
+        List<ProductModel> products = productProvider.products;
+        log(products.length.toString());
+        return Stack(
+          children: [
+            GestureDetector(
+              onDoubleTap: () {
+                Navigator.pushNamed(context, '/product_edit_page');
+              },
+              child: SizedBox(
+                height: 672.5,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 8.59 / 10,
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 20),
+                    itemCount: products.length,
+                    itemBuilder: (BuildContext ctx, index) {
+                      ProductModel product = products[index];
+                      return Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            gradient: linearGradient,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.network(product.image.imageUrl,
+                                  height: height * 0.18, width: height * 0.18),
+                              Text(
+                                product.name,
+                                style: const TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Text(
+                                product.price.toString(),
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end, // Align at the bottom
-            children: [
-              Container(
-                height: 55,
-                width: double.infinity,
-                color: const Color.fromARGB(255, 180, 212, 230),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/product_add_page');
-                      },
-                      child: Container(
-                        height: 45,
-                        width: 45,
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 5),
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: const Icon(
-                          IconlyBold.plus,
-                          size: 35,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end, // Align at the bottom
+              children: [
+                Container(
+                  height: 55,
+                  width: double.infinity,
+                  color: const Color.fromARGB(255, 180, 212, 230),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/product_add_page');
+                        },
+                        child: Container(
+                          height: 45,
+                          width: 45,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 5),
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: const Icon(
+                            IconlyBold.plus,
+                            size: 35,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
+              ],
+            ),
+          ],
+        );
+      }),
     );
   }
 }

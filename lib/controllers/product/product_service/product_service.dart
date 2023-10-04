@@ -3,11 +3,13 @@ import 'dart:io';
 
 import 'package:admin_module/core/constants/api/api_base_url.dart';
 import 'package:admin_module/core/constants/api/api_end_url.dart';
+import 'package:admin_module/models/product_model/product_model.dart';
 import 'package:dio/dio.dart';
 
 class ProductService {
   final Dio dio = Dio();
   final addProductUrl = ApiBaseUrl().baseUrl + ApiEndUrl().addProduct;
+  final getAllPrductUrl = ApiBaseUrl().baseUrl + ApiEndUrl().getAllProduct;
 
   String get_last_image_path_from_url(String url) {
     final uri = Uri.parse(url);
@@ -57,5 +59,28 @@ class ProductService {
     } catch (error) {
       log('Error in add product in service : $error');
     }
+  }
+
+  Future<List<ProductModel>> getAllProducts() async {
+    try {
+      Response response = await dio.get(getAllPrductUrl);
+
+      if (response.statusCode == 200) {
+        log('product successfully get in product service : ${response.data.toString()} ');
+        List<dynamic> productJsonList = response.data['data'];
+
+        List<ProductModel> allProducts = productJsonList
+            .map((productList) => ProductModel.fromJson(productList))
+            .toList();
+        log('in service allProducts:  ${allProducts.toString()}');
+        return allProducts;
+      } else {
+        log('Failed to fetching product');
+      }
+    } catch (e) {
+      log('Error in products in service : $e');
+      return [];
+    }
+    return [];
   }
 }

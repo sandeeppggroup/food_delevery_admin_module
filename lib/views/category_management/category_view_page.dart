@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:admin_module/controllers/category/category_controller/category_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/models/category_model/category_model.dart';
@@ -34,6 +36,7 @@ class CategoryPage extends StatelessWidget {
       body: Consumer<CategoryProvider>(
         builder: (context, categoryProvider, child) {
           List<CategoryModel> categories = categoryProvider.categories;
+
           return Stack(
             children: [
               GestureDetector(
