@@ -17,10 +17,7 @@ class CategoryAddPage extends StatefulWidget {
 }
 
 class _CategoryAddPageState extends State<CategoryAddPage> {
-  // CategoryProvider categoryProvider = CategoryProvider();
-
   final TextEditingController _categoryName = TextEditingController();
-
   File? _image;
 
   Future getImage(ImageSource imageSource) async {
@@ -46,7 +43,7 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
         ),
       ),
       body: Consumer<CategoryProvider>(
-        builder: (context, categeryList, child) => Padding(
+        builder: (context, categoryList, child) => Padding(
           padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
           child: SingleChildScrollView(
             child: Column(
@@ -162,17 +159,34 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
                 ButtonBig(
                   label: 'Add to category',
                   onPressed: () async {
-                    if (_categoryName.text.isNotEmpty && _image != null) {
-                      await Provider.of<CategoryProvider>(context,
-                              listen: false)
-                          .addCategory(_categoryName.text, _image!);
+                    if (_image == null && _categoryName.text.isEmpty) {
+                      showItemSnackBar(context,
+                          massage: 'Please give all the fields',
+                          color: Colors.grey);
+                      return;
+                    } else if (_categoryName.text.isEmpty) {
+                      showItemSnackBar(context,
+                          massage: 'Please enter a category name',
+                          color: Colors.grey);
+                      return;
+                    } else if (_image == null) {
+                      showItemSnackBar(context,
+                          massage: 'Please select an image',
+                          color: Colors.grey);
+                      return;
                     }
+
                     // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                     // ignore: use_build_context_synchronously
                     showItemSnackBar(context,
                         massage: 'Category Added Successfully',
                         color: Colors.green);
+
+                    if (_categoryName.text.isNotEmpty && _image != null) {
+                      await categoryList.addCategory(
+                          _categoryName.text, _image!);
+                    }
                   },
                 ),
               ],

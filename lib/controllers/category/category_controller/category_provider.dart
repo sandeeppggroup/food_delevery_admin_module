@@ -5,7 +5,7 @@ import 'package:admin_module/models/category_model/category_model.dart';
 import 'package:flutter/material.dart';
 
 class CategoryProvider with ChangeNotifier {
-  final CategoryService categoryService = CategoryService();
+  CategoryService categoryService = CategoryService();
 
   List<CategoryModel>? _categories = [];
 
@@ -30,4 +30,6 @@ class CategoryProvider with ChangeNotifier {
     // _categories?.addAll(categories);
     notifyListeners();
   }
+
+  map(DropdownMenuItem Function(CategoryModel categories) param0) {}
 }

@@ -1,7 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-// import 'dart:math';
-
 import 'package:admin_module/core/constants/api/api_base_url.dart';
 import 'package:admin_module/core/constants/api/api_end_url.dart';
 import 'package:admin_module/models/category_model/category_model.dart';
@@ -37,11 +35,8 @@ class CategoryService {
       log(image.path);
       log(formData.toString());
 
-      Response response = await dio.post(
-          'https://redrabbit-flutter-project.onrender.com/admin/addCategory',
-          data: formData);
+      Response response = await dio.post(addCategoryUrl, data: formData);
       log(response.toString());
-      print(response.toString());
 
       log('Hai   j :${addCategoryUrl.toString()}');
       if (response.statusCode == 200) {

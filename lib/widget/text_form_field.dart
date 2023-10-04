@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 class TextForm1 extends StatelessWidget {
   String label;
   TextEditingController controller = TextEditingController();
-  TextForm1({required this.label, required this.controller, super.key});
+  TextInputType? keyBoardType;
+  TextForm1({
+    required this.label,
+    required this.controller,
+    this.keyBoardType,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +20,7 @@ class TextForm1 extends StatelessWidget {
       height: height * 0.06,
       width: width * 0.8,
       child: TextFormField(
+        keyboardType: keyBoardType,
         controller: controller,
         decoration: InputDecoration(
           label: Text(label),

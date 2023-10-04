@@ -20,7 +20,7 @@ class ProductModel {
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
         image: ImageProduct.fromJson(json['imageUrl']),
-        id: json['id'],
+        id: json['_id'],
         name: json['name'],
         categoryId: json['category'],
         price: json['price'],
