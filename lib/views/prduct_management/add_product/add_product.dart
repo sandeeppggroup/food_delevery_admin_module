@@ -1,8 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:admin_module/controllers/category/category_controller/category_provider.dart';
-import 'package:admin_module/controllers/product/product_controler/product_provider.dart';
+import 'package:admin_module/controllers/product/product_provider/product_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/models/category_model/category_model.dart';
 import 'package:admin_module/widget/button1.dart';
@@ -23,16 +22,8 @@ class _ProductAddPageState extends State<ProductAddPage> {
   final TextEditingController _productName = TextEditingController();
   final TextEditingController _productPrice = TextEditingController();
   final TextEditingController _productDiscription = TextEditingController();
-  File? _image;
 
-  Future getImage(ImageSource imageSource) async {
-    final image = await ImagePicker().pickImage(source: imageSource);
-    if (image == null) return;
-    final imageTemporary = File(image.path);
-    setState(() {
-      _image = imageTemporary;
-    });
-  }
+  File? _image;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +68,8 @@ class _ProductAddPageState extends State<ProductAddPage> {
                               Icons.image,
                               size: 150,
                             ),
-                            onPressed: () {
+                            onPressed: () async {
+                              // await productProvider.bottomSheet(context);
                               bottomSheet();
                             },
                           )
@@ -86,7 +78,7 @@ class _ProductAddPageState extends State<ProductAddPage> {
                               Positioned(
                                 child: Center(
                                   child: GestureDetector(
-                                    onTap: () {
+                                    onTap: () async {
                                       bottomSheet();
                                     },
                                     child: SizedBox(
@@ -294,5 +286,14 @@ class _ProductAddPageState extends State<ProductAddPage> {
         );
       },
     );
+  }
+
+  Future getImage(ImageSource imageSource) async {
+    var image = await ImagePicker().pickImage(source: imageSource);
+    if (image == null) return;
+    final imageTemporary = File(image.path);
+    setState(() {
+      _image = imageTemporary;
+    });
   }
 }

@@ -4,12 +4,41 @@ import 'package:admin_module/widget/show_dialog.dart';
 import 'package:admin_module/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 
-class ProductEditPage extends StatelessWidget {
-  ProductEditPage({super.key});
+class ProductEditPage extends StatefulWidget {
+  String? categoryId;
+  String? productId;
+  String? imageUrl;
+  String? name;
+  String? discription;
+  String? price;
+  ProductEditPage(
+      {super.key,
+      this.categoryId,
+      this.productId,
+      this.imageUrl,
+      this.name,
+      this.discription,
+      this.price});
 
+  @override
+  State<ProductEditPage> createState() => _ProductEditPageState();
+}
+
+class _ProductEditPageState extends State<ProductEditPage> {
   final TextEditingController _productName = TextEditingController();
+
   final TextEditingController _productPrice = TextEditingController();
+
   final TextEditingController _productDiscription = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _productName.text = widget.name ?? "";
+    _productPrice.text = widget.price ?? "";
+    _productDiscription.text = widget.discription ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +81,7 @@ class ProductEditPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Image.asset(
-                        'assets/images/burger_cola_frenchfries.png'),
+                    child: Image.network(widget.imageUrl.toString()),
                   ),
                 ),
               ),
@@ -87,7 +115,10 @@ class ProductEditPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.009,
               ),
-              TextForm1(label: 'Enter product name', controller: _productName),
+              TextForm1(
+                label: 'Enter product name',
+                controller: _productName,
+              ),
               SizedBox(
                 height: height * 0.02,
               ),

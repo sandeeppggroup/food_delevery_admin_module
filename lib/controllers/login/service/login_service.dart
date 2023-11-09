@@ -10,14 +10,20 @@ class AdminLoginservice {
   final signIndUrl = ApiBaseUrl().baseUrl + ApiEndUrl().signIn;
   final tokenValidationUrl = ApiBaseUrl().baseUrl + ApiEndUrl().validation;
 
-  Future<dynamic> loginAdmin(String mobile) async {
+  Future<dynamic> loginAdmin(int mobile, String password) async {
     log('function call');
     final Dio dio = Dio();
+
     try {
       var response = await dio.post(
         signIndUrl,
-        data: {'mobile': mobile},
+        data: {
+          'mobile': mobile,
+          'password': password,
+        },
       );
+
+      log('Status code : ${response.statusCode}');
 
       if (response.statusCode == 200) {
         if (response.data['success'] == true) {
@@ -30,7 +36,7 @@ class AdminLoginservice {
           log('error message :  ${response.data['message']}'); // error message
           return response.data;
         }
-      } else if (response.statusCode == 401) {
+      } else if (response.statusCode == 201) {
         log('error message :  ${response.data['message']}');
         return response.data;
       }

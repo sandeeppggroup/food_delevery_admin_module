@@ -1,8 +1,9 @@
 import 'dart:developer';
 
-import 'package:admin_module/controllers/product/product_controler/product_provider.dart';
+import 'package:admin_module/controllers/product/product_provider/product_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/models/product_model/product_model.dart';
+import 'package:admin_module/views/prduct_management/edit_product/edit_product.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
@@ -38,25 +39,35 @@ class ProductPage extends StatelessWidget {
         log(products.length.toString());
         return Stack(
           children: [
-            GestureDetector(
-              onDoubleTap: () {
-                Navigator.pushNamed(context, '/product_edit_page');
-              },
-              child: SizedBox(
-                height: 672.5,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
-                            childAspectRatio: 8.59 / 10,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 20),
-                    itemCount: products.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      ProductModel product = products[index];
-                      return Container(
+            SizedBox(
+              height: 672.5,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 8.59 / 10,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20),
+                  itemCount: products.length,
+                  itemBuilder: (BuildContext ctx, index) {
+                    ProductModel product = products[index];
+                    return GestureDetector(
+                      onDoubleTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductEditPage(
+                                categoryId: product.categoryId,
+                                productId: product.id,
+                                imageUrl: product.image.imageUrl,
+                                name: product.name,
+                                price: product.price.toString(),
+                                discription: product.description,
+                              ),
+                            ));
+                      },
+                      child: Container(
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                             gradient: linearGradient,
@@ -85,9 +96,9 @@ class ProductPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

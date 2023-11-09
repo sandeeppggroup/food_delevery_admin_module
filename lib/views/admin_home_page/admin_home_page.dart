@@ -84,26 +84,26 @@ class AdiminHomePage extends StatelessWidget {
               radius: 30,
               onTap: () {},
             ),
-            GridItemWidget(
-              item1: 'Offer',
-              item2: 'Management',
-              radius: 30,
-              onTap: () {},
-            ),
-            GridItemWidget(
-              item1: 'Rider',
-              item2: 'Management',
-              radius: 30,
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/rider_view_page');
-              },
-            ),
-            GridItemWidget(
-              item1: 'Reports &',
-              item2: 'Analytics',
-              radius: 30,
-              onTap: () {},
-            ),
+            // GridItemWidget(
+            //   item1: 'Offer',
+            //   item2: 'Management',
+            //   radius: 30,
+            //   onTap: () {},
+            // ),
+            // GridItemWidget(
+            //   item1: 'Rider',
+            //   item2: 'Management',
+            //   radius: 30,
+            //   onTap: () {
+            //     Navigator.pushReplacementNamed(context, '/rider_view_page');
+            //   },
+            // ),
+            // GridItemWidget(
+            //   item1: 'Reports &',
+            //   item2: 'Analytics',
+            //   radius: 30,
+            //   onTap: () {},
+            // ),
           ],
         ),
       ),

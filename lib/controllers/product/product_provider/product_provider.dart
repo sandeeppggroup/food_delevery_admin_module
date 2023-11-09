@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:admin_module/controllers/product/product_service/product_service.dart';
 import 'package:admin_module/models/product_model/product_model.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class ProductProvider with ChangeNotifier {
   void updateDropdownValue(String? value) {
     if (value != null) {
       selectedDropdownValue = value;
-      // log('In product provider:  ${selectedDropdownValue.toString()}');
+
       notifyListeners();
     }
   }
@@ -31,9 +30,6 @@ class ProductProvider with ChangeNotifier {
       required String category,
       required int price,
       required String description}) async {
-    // log('add category in provider:  ${name.toString()}');
-    // log('add category in provider:  ${image.path.toString()}, ${category.toString()}, ${price.toString()}, ${description.toString()}');
-
     await productService.addProduct(
         image: image,
         name: name,
