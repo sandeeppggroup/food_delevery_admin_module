@@ -5,4 +5,5 @@ class ApiEndUrl {
   String getAllCategory = '/admin/getCategory';
   String addProduct = '/admin/addProduct';
   String getAllProduct = '/admin/findAllProducts';
+  String editProduct = '/admin/updateProduct';
 }

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:admin_module/controllers/product/product_provider/product_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/models/product_model/product_model.dart';
@@ -14,7 +13,6 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    // double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: adminAppBar,
@@ -55,17 +53,18 @@ class ProductPage extends StatelessWidget {
                     return GestureDetector(
                       onDoubleTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProductEditPage(
-                                categoryId: product.categoryId,
-                                productId: product.id,
-                                imageUrl: product.image.imageUrl,
-                                name: product.name,
-                                price: product.price.toString(),
-                                discription: product.description,
-                              ),
-                            ));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductEditPage(
+                              categoryId: product.categoryId,
+                              productId: product.id,
+                              imageUrl: product.image.imageUrl,
+                              name: product.name,
+                              price: product.price.toString(),
+                              discription: product.description,
+                            ),
+                          ),
+                        );
                       },
                       child: Container(
                         alignment: Alignment.center,

@@ -9,15 +9,13 @@ import 'package:dio/dio.dart';
 class ProductService {
   final Dio dio = Dio();
   final addProductUrl = ApiBaseUrl().baseUrl + ApiEndUrl().addProduct;
+  final editProductUrl = ApiBaseUrl().baseUrl + ApiEndUrl().editProduct;
   final getAllPrductUrl = ApiBaseUrl().baseUrl + ApiEndUrl().getAllProduct;
 
   String get_last_image_path_from_url(String url) {
     final uri = Uri.parse(url);
-    // log('uri : $uri');
     final pathSegments = uri.pathSegments;
-    // log('pathSegments : $pathSegments');
     final lastPathSegment = pathSegments.last;
-    // log('lastPathSegment : $lastPathSegment');
     return lastPathSegment;
   }
 
@@ -49,6 +47,7 @@ class ProductService {
       log('in product service before response formdata: ${formData.toString()}');
 
       Response response = await dio.post(addProductUrl, data: formData);
+
       log('in product service response: ${response.toString()}');
 
       if (response.statusCode == 200) {
@@ -58,6 +57,51 @@ class ProductService {
       }
     } catch (error) {
       log('Error in add product in service : $error');
+    }
+  }
+
+  Future<bool> editProduct(
+      {required String productId,
+      required File image,
+      required String name,
+      required String category,
+      required int price,
+      required String description}) async {
+    final imageUrl = image.path;
+    final lastImagePath = get_last_image_path_from_url(imageUrl);
+    log('In product service --------------------------------');
+    log(productId);
+    log(lastImagePath);
+    log(name);
+    log(category);
+    log(price.toString());
+    log(description);
+
+    try {
+      FormData formData = FormData.fromMap({
+        'id': productId,
+        'image':
+            await MultipartFile.fromFile(image.path, filename: lastImagePath),
+        'name': name,
+        'category': category,
+        'price': price,
+        'description': description,
+      });
+
+      Response response = await dio.patch(editProductUrl, data: formData);
+
+      log('message : ${response.statusCode}');
+
+      if (response.statusCode == 200) {
+        log('Product edited successfully');
+        return true;
+      } else {
+        log('Failed to edit product');
+        return false;
+      }
+    } catch (error) {
+      log('Error in Edit product in service : $error');
+      return false;
     }
   }
 
