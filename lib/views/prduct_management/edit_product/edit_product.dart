@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class ProductEditPage extends StatefulWidget {
   String? categoryId;
   String? productId;
@@ -41,7 +42,6 @@ class _ProductEditPageState extends State<ProductEditPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _productName.text = widget.name ?? "";
     _productPrice.text = widget.price ?? "";

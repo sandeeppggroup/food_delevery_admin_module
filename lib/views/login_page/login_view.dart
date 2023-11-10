@@ -1,17 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
-
 import 'package:admin_module/controllers/login/provider/login_provider.dart';
-import 'package:admin_module/controllers/login/service/login_service.dart';
-import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/views/login_page/widget/admin_login_container.dart';
 import 'package:admin_module/widget/logo.dart';
-import 'package:admin_module/widget/shadow.dart';
-import 'package:admin_module/widget/show_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
@@ -44,7 +36,7 @@ class _LonginPageState extends State<LoginPage> {
               SizedBox(
                 height: height * .06,
               ),
-              AdminLoginContainer(),
+              const AdminLoginContainer(),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(

@@ -27,15 +27,18 @@ class LoginProvider extends ChangeNotifier {
     log("Result : ${result.toString()}");
 
     if (result == false) {
+      // ignore: use_build_context_synchronously
       showItemSnackBar(context, massage: 'invalid username', color: Colors.red);
       return;
     } else {
       dynamic token = result['data'];
       await setToken(token);
 
+      // ignore: use_build_context_synchronously
       showItemSnackBar(context,
           massage: result['message'], color: Colors.green);
 
+      // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, '/admin_home_page');
     }
   }

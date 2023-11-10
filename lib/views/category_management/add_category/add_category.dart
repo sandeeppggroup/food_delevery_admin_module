@@ -203,14 +203,14 @@ Widget customButton({
   required IconData icon,
   required VoidCallback onClick,
 }) {
-  return Container(
+  return SizedBox(
     width: 280,
     child: ElevatedButton(
       onPressed: onClick,
       child: Row(
         children: [
           Icon(icon),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Text(title),

@@ -113,7 +113,7 @@ class TakeAwayView extends StatelessWidget {
                       fontSize: 15,
                       color: Colors.blue,
                       fontWeight: FontWeight.bold),
-                  subtitleTextStyle: TextStyle(fontSize: 16),
+                  subtitleTextStyle: const TextStyle(fontSize: 16),
                 ),
               ),
             ],

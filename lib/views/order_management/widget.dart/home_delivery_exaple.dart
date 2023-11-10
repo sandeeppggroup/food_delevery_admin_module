@@ -30,7 +30,7 @@ class HomeDeliveryViewExample extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 key,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -38,7 +38,7 @@ class HomeDeliveryViewExample extends StatelessWidget {
             ),
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: values?.length,
               itemBuilder: (context, innerIndex) {
                 return Padding(

@@ -12,6 +12,7 @@ class ProductService {
   final editProductUrl = ApiBaseUrl().baseUrl + ApiEndUrl().editProduct;
   final getAllPrductUrl = ApiBaseUrl().baseUrl + ApiEndUrl().getAllProduct;
 
+  // ignore: non_constant_identifier_names
   String get_last_image_path_from_url(String url) {
     final uri = Uri.parse(url);
     final pathSegments = uri.pathSegments;

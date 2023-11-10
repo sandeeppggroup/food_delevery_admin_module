@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:admin_module/controllers/category/category_controller/category_provider.dart';
 import 'package:admin_module/controllers/product/product_provider/product_provider.dart';

@@ -2,10 +2,11 @@ import 'package:admin_module/core/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 class ButtonSmall extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final label;
   final VoidCallback? onPressed;
 
-  ButtonSmall({required this.label, required this.onPressed, super.key});
+  const ButtonSmall({required this.label, required this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {
