@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class AdminLoginContainer extends StatefulWidget {
-  AdminLoginContainer({super.key});
+  const AdminLoginContainer({super.key});
   static final _formKey = GlobalKey<FormState>();
 
   @override
@@ -25,7 +25,6 @@ class _AdminLoginContainerState extends State<AdminLoginContainer> {
 
   @override
   Widget build(BuildContext context) {
-    final loginProviderWatch = context.watch<LoginProvider>();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
