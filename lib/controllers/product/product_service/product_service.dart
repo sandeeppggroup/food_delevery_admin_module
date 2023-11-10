@@ -63,16 +63,17 @@ class ProductService {
 
   Future<bool> editProduct(
       {required String productId,
-      required File image,
+      dynamic image,
       required String name,
       required String category,
       required int price,
       required String description}) async {
-    final imageUrl = image.path;
-    final lastImagePath = get_last_image_path_from_url(imageUrl);
+    final imageUrl = image?.path;
+    final lastImagePath =
+        imageUrl != null ? get_last_image_path_from_url(imageUrl) : null;
     log('In product service --------------------------------');
     log(productId);
-    log(lastImagePath);
+    log(lastImagePath.toString());
     log(name);
     log(category);
     log(price.toString());
@@ -81,8 +82,9 @@ class ProductService {
     try {
       FormData formData = FormData.fromMap({
         'id': productId,
-        'image':
-            await MultipartFile.fromFile(image.path, filename: lastImagePath),
+        'image': imageUrl != null
+            ? await MultipartFile.fromFile(image.path, filename: lastImagePath)
+            : null,
         'name': name,
         'category': category,
         'price': price,

@@ -253,10 +253,15 @@ class _ProductEditPageState extends State<ProductEditPage> {
                   ButtonSmall(
                     label: 'Update',
                     onPressed: () {
+                      if (_image == null) {
+                        // showItemSnackBar(context,
+                        //     massage: 'Please select a image',
+                        //     color: Colors.red);
+                      }
                       int price = int.parse(_productPrice.text);
                       productProvider.editProduct(context,
                           productId: widget.productId!,
-                          image: _image!,
+                          image: _image,
                           name: _productName.text,
                           category: productProvider.selectedDropdownValue!,
                           price: price,

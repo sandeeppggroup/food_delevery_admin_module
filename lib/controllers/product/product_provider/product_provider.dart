@@ -44,7 +44,7 @@ class ProductProvider with ChangeNotifier {
   Future<void> editProduct(
     BuildContext context, {
     required String productId,
-    required File image,
+    dynamic image,
     required String name,
     required String category,
     required int price,
@@ -65,6 +65,7 @@ class ProductProvider with ChangeNotifier {
       // ignore: use_build_context_synchronously
       showItemSnackBar(context,
           massage: 'Product Updated Successfully  !', color: Colors.blue);
+      selectedDropdownValue = null;
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacementNamed('/product_page');
     } else {
