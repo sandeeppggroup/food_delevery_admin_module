@@ -10,6 +10,7 @@ class CategoryService {
   final getCategoryUrl = ApiBaseUrl().baseUrl + ApiEndUrl().getAllCategory;
   final addCategoryUrl = ApiBaseUrl().baseUrl + ApiEndUrl().addCategory;
 
+  // ignore: non_constant_identifier_names
   String get_last_image_path_from_url(String url) {
     final uri = Uri.parse(url);
     log('uri : $uri');
@@ -23,7 +24,6 @@ class CategoryService {
   Future<void>? addCategory(String name, File image) async {
     final imageUrl = image.path;
     final lastImagePath = get_last_image_path_from_url(imageUrl);
-    print(lastImagePath);
 
     log(MultipartFile.fromFile(image.path).toString());
     try {

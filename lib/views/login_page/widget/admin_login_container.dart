@@ -1,10 +1,8 @@
 import 'dart:developer';
-
 import 'package:admin_module/controllers/login/provider/login_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/widget/shadow.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class AdminLoginContainer extends StatefulWidget {

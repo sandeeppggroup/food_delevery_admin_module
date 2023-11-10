@@ -1,6 +1,7 @@
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:flutter/material.dart';
 
+// ignore: use_key_in_widget_constructors
 class RiderViewPage extends StatelessWidget {
   final List<String> names = [
     'John Doe',
