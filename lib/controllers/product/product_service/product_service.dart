@@ -65,7 +65,7 @@ class ProductService {
       {required String productId,
       dynamic image,
       required String name,
-      required String category,
+      dynamic category,
       required int price,
       required String description}) async {
     final imageUrl = image?.path;

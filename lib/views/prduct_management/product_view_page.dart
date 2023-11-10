@@ -51,21 +51,6 @@ class ProductPage extends StatelessWidget {
                   itemBuilder: (BuildContext ctx, index) {
                     ProductModel product = products[index];
                     return GestureDetector(
-                      onDoubleTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProductEditPage(
-                              categoryId: product.categoryId,
-                              productId: product.id,
-                              imageUrl: product.image.imageUrl,
-                              name: product.name,
-                              price: product.price.toString(),
-                              discription: product.description,
-                            ),
-                          ),
-                        );
-                      },
                       child: Container(
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
@@ -96,6 +81,21 @@ class ProductPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      onDoubleTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductEditPage(
+                              categoryId: product.categoryId,
+                              productId: product.id,
+                              imageUrl: product.image.imageUrl,
+                              name: product.name,
+                              price: product.price.toString(),
+                              discription: product.description,
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

@@ -11,7 +11,7 @@ class CategoryProvider with ChangeNotifier {
 
   CategoryProvider() {
     // initialize the categories when the provider is created
-    _fetchCategories();
+    fetchCategories();
   }
 
   List<CategoryModel> get categories => _categories!;
@@ -21,10 +21,10 @@ class CategoryProvider with ChangeNotifier {
     log('add category in provider:  ${image.path.toString()}');
 
     await categoryService.addCategory(name, image);
-    _fetchCategories();
+    fetchCategories();
   }
 
-  Future<void> _fetchCategories() async {
+  Future<void> fetchCategories() async {
     _categories = await categoryService.getCategories();
     log('fetch Categories in provider: ${_categories.toString()}');
     // _categories?.addAll(categories);

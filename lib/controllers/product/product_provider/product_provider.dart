@@ -12,7 +12,7 @@ class ProductProvider with ChangeNotifier {
   List<ProductModel> _products = [];
 
   ProductProvider() {
-    _fetchPrduct();
+    fetchPrduct();
   }
 
   List<ProductModel> get products => _products;
@@ -38,7 +38,7 @@ class ProductProvider with ChangeNotifier {
         price: price,
         description: description);
 
-    _fetchPrduct();
+    fetchPrduct();
   }
 
   Future<void> editProduct(
@@ -46,7 +46,7 @@ class ProductProvider with ChangeNotifier {
     required String productId,
     dynamic image,
     required String name,
-    required String category,
+    dynamic category,
     required int price,
     required String discription,
   }) async {
@@ -59,7 +59,7 @@ class ProductProvider with ChangeNotifier {
         description: discription);
 
     if (result == true) {
-      await _fetchPrduct();
+      await fetchPrduct();
       notifyListeners();
 
       // ignore: use_build_context_synchronously
@@ -74,7 +74,7 @@ class ProductProvider with ChangeNotifier {
     }
   }
 
-  Future<void> _fetchPrduct() async {
+  Future<void> fetchPrduct() async {
     _products = await productService.getAllProducts();
     log('Fetch products in provider: ${_products.toString()}');
     notifyListeners();

@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'package:admin_module/controllers/category/category_provider/category_provider.dart';
 import 'package:admin_module/controllers/login/service/login_service.dart';
+import 'package:admin_module/controllers/product/product_provider/product_provider.dart';
 import 'package:admin_module/widget/show_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +14,14 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   AdminLoginservice adminLoginService = AdminLoginservice();
+  CategoryProvider categoryProvider = CategoryProvider();
+  ProductProvider productProvider = ProductProvider();
 
   @override
   void initState() {
     super.initState();
+    categoryProvider.fetchCategories();
+    productProvider.fetchPrduct();
     checkAdminLoginStatusInSplash();
   }
 

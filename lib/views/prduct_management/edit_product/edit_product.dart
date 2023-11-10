@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:admin_module/controllers/category/category_controller/category_provider.dart';
+import 'package:admin_module/controllers/category/category_provider/category_provider.dart';
 import 'package:admin_module/controllers/product/product_provider/product_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/models/category_model/category_model.dart';
@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class ProductEditPage extends StatefulWidget {
+  String? categoryName;
   String? categoryId;
   String? productId;
   String? imageUrl;
@@ -26,7 +27,8 @@ class ProductEditPage extends StatefulWidget {
       this.imageUrl,
       this.name,
       this.discription,
-      this.price});
+      this.price,
+      this.categoryName});
 
   @override
   State<ProductEditPage> createState() => _ProductEditPageState();
@@ -58,219 +60,224 @@ class _ProductEditPageState extends State<ProductEditPage> {
 
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        foregroundColor: blackColor,
-        backgroundColor: adminAppBar,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pushReplacementNamed('/product_page');
-          },
-          icon: const Icon(Icons.arrow_back),
+    return WillPopScope(
+      onWillPop: () async {
+        productProvider.selectedDropdownValue = null;
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          foregroundColor: blackColor,
+          backgroundColor: adminAppBar,
+          leading: IconButton(
+            onPressed: () {
+              productProvider.selectedDropdownValue = null;
+              Navigator.of(context).pushReplacementNamed('/product_page');
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
+          title: const Text(
+            'Edit Product',
+            style: TextStyle(color: Colors.black),
+          ),
         ),
-        title: const Text(
-          'Edit Product',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: height * 0.04,
-              ),
-              Center(
-                child: Container(
-                  height: height * 0.23,
-                  width: width * 0.9,
-                  decoration: BoxDecoration(
-                    gradient: linearGradient,
-                    border: const BorderDirectional(),
-                    borderRadius: const BorderRadius.all(Radius.circular(30)),
-                  ),
-                  child: GestureDetector(
-                      onTap: () {
-                        bottomSheet();
-                      },
-                      child: _image == null
-                          ? Image.network(widget.imageUrl.toString())
-                          : Image.file(_image!)),
+        body: Padding(
+          padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: height * 0.04,
                 ),
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              const Text(
-                'Edit Image',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey),
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                height: height * 0.06,
-                width: width * 0.8,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 5),
-                  child: DropdownButton(
-                    items: category.map(
-                      (item) {
-                        return DropdownMenuItem<String>(
-                          value: item.id,
-                          child: Text(item.name),
-                        );
-                      },
-                    ).toList(),
-                    underline: const Divider(
-                      height: 0,
-                      color: Colors.white,
+                Center(
+                  child: Container(
+                    height: height * 0.23,
+                    width: width * 0.9,
+                    decoration: BoxDecoration(
+                      gradient: linearGradient,
+                      border: const BorderDirectional(),
+                      borderRadius: const BorderRadius.all(Radius.circular(30)),
                     ),
-                    hint: const Text(
-                      'Please select a category',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
-                    borderRadius: BorderRadius.circular(20),
-                    isExpanded: true,
-                    icon: const Icon(Icons.arrow_circle_down, size: 30),
-                    value: productProviderWatch.selectedDropdownValue,
-                    onChanged: (String? newValue) {
-                      if (newValue != null) {
-                        productProvider.updateDropdownValue(newValue);
-                      }
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: width * 0.07,
-                  ),
-                  const Text(
-                    'Edit Product name',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: height * 0.009,
-              ),
-              TextForm1(
-                label: 'Enter product name',
-                controller: _productName,
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: width * 0.07,
-                  ),
-                  const Text(
-                    'Edit Product Price',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: height * 0.009,
-              ),
-              TextForm1(
-                  label: 'Enter product price', controller: _productPrice),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: width * 0.07,
-                  ),
-                  const Text(
-                    'Edit Product Description',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: height * 0.009,
-              ),
-              TextForm1(
-                  label: 'Enter product description',
-                  controller: _productDiscription),
-              SizedBox(
-                height: height * 0.05,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ButtonSmall(
-                    label: 'Delete',
-                    onPressed: () {
-                      showDeleteConfirmationDialog(
-                        context,
-                        onPressedFunction: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed('/product_page');
-                          showItemSnackBar(context,
-                              massage:
-                                  'This product has deleted from the list\n successfully  !',
-                              color: Colors.red);
+                    child: GestureDetector(
+                        onTap: () {
+                          bottomSheet();
                         },
-                        massage:
-                            '''\n\nDo you want to proceed with deleting this product?''',
-                      );
-                      // Navigator.pop(context);
-                    },
+                        child: _image == null
+                            ? Image.network(widget.imageUrl.toString())
+                            : Image.file(_image!)),
                   ),
-                  ButtonSmall(
-                    label: 'Update',
-                    onPressed: () {
-                      if (_image == null) {
-                        // showItemSnackBar(context,
-                        //     massage: 'Please select a image',
-                        //     color: Colors.red);
-                      }
-                      int price = int.parse(_productPrice.text);
-                      productProvider.editProduct(context,
-                          productId: widget.productId!,
-                          image: _image,
-                          name: _productName.text,
-                          category: productProvider.selectedDropdownValue!,
-                          price: price,
-                          discription: _productDiscription.text);
-                    },
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                const Text(
+                  'Edit Image',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                ],
-              ),
-            ],
+                  height: height * 0.06,
+                  width: width * 0.8,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 5),
+                    child: DropdownButton(
+                      items: category.map(
+                        (item) {
+                          return DropdownMenuItem<String>(
+                            value: item.id,
+                            child: Text(
+                              item.name,
+                            ),
+                          );
+                        },
+                      ).toList(),
+                      underline: const Divider(
+                        height: 0,
+                        color: Colors.white,
+                      ),
+                      hint: const Text(
+                        'Please select a category',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                      borderRadius: BorderRadius.circular(20),
+                      isExpanded: true,
+                      icon: const Icon(Icons.arrow_circle_down, size: 30),
+                      value: productProviderWatch.selectedDropdownValue,
+                      onChanged: (String? newValue) {
+                        if (newValue != null) {
+                          productProvider.updateDropdownValue(newValue);
+                        }
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.07,
+                    ),
+                    const Text(
+                      'Edit Product name',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.009,
+                ),
+                TextForm1(
+                  label: 'Enter product name',
+                  controller: _productName,
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.07,
+                    ),
+                    const Text(
+                      'Edit Product Price',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.009,
+                ),
+                TextForm1(
+                    label: 'Enter product price', controller: _productPrice),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.07,
+                    ),
+                    const Text(
+                      'Edit Product Description',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.009,
+                ),
+                TextForm1(
+                    label: 'Enter product description',
+                    controller: _productDiscription),
+                SizedBox(
+                  height: height * 0.05,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ButtonSmall(
+                      label: 'Delete',
+                      onPressed: () {
+                        showDeleteConfirmationDialog(
+                          context,
+                          onPressedFunction: () {
+                            Navigator.of(context)
+                                .pushReplacementNamed('/product_page');
+                            showItemSnackBar(context,
+                                massage:
+                                    'This product has deleted from the list\n successfully  !',
+                                color: Colors.red);
+                          },
+                          massage:
+                              '''\n\nDo you want to proceed with deleting this product?''',
+                        );
+                        // Navigator.pop(context);
+                      },
+                    ),
+                    ButtonSmall(
+                      label: 'Update',
+                      onPressed: () {
+                        int price = int.parse(_productPrice.text);
+                        productProvider.editProduct(context,
+                            productId: widget.productId!,
+                            image: _image,
+                            name: _productName.text,
+                            category: productProvider.selectedDropdownValue ??
+                                widget.categoryId,
+                            price: price,
+                            discription: _productDiscription.text);
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

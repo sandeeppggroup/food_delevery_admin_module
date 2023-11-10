@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:admin_module/controllers/category/category_controller/category_provider.dart';
+import 'package:admin_module/controllers/category/category_provider/category_provider.dart';
 import 'package:admin_module/controllers/product/product_provider/product_provider.dart';
 import 'package:admin_module/core/colors/colors.dart';
 import 'package:admin_module/models/category_model/category_model.dart';
